@@ -2,7 +2,13 @@
 @section('content')
     <h1>Les personnes</h1>
     <div class="container">
-
+        <form action="/delete_all" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-danger">
+                Delete All
+            </button>
+        
+        </form>
             @foreach ($DBPeople as $item)
                 <div class="card " style="width: 18rem;">
                     <div class="card-body">
@@ -15,6 +21,7 @@
                         </button>
                     </form>
                     <a href="/show_people/{{$item -> id}}" class="btn btn-primary">Shooow</a>
+                    <a href="/edit_people/{{$item -> id}}" class="btn btn-success">Edit</a>
                     </div>
                 </div>
         

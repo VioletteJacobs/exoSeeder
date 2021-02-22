@@ -77,8 +77,16 @@ class PeopleController extends Controller
      * @param  \App\Models\People  $people
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, People $people)
-    {;
+    public function update(Request $request, $id)
+    {
+        $update = People::find($id);
+        $update->name = $request->name;
+        $update->age = $request->age;
+        $update->phone = $request->phone;
+        $update->email = $request->email;
+
+        $update->save();
+        return redirect('/');
     }
 
     /**
@@ -92,5 +100,15 @@ class PeopleController extends Controller
         $destroy = People::find($id);
         $destroy->delete();
         return redirect()-> back();
+    }
+    public function destroyAll()
+    {
+        $destroyAll = People::all();
+
+        foreach($destroyAll as $item){
+            $item->delete();
+        }
+
+        return redirect('/');
     }
 }
