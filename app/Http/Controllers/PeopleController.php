@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\People;
+use Database\Seeders\PeopleSeeder;
 use Illuminate\Http\Request;
 
 class PeopleController extends Controller
@@ -15,7 +16,7 @@ class PeopleController extends Controller
     public function index()
     {
         $DBPeople= People::all();
-        return view ("welcome", compact "DBpeople");
+        return view ("welcome", compact ('DBPeople'));
     }
 
     /**
@@ -25,7 +26,7 @@ class PeopleController extends Controller
      */
     public function create()
     {
-        //
+        return view ("pages.create");
     }
 
     /**
@@ -36,7 +37,13 @@ class PeopleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $newEntry = new People;
+        $newEntry->name = $request->name;
+        $newEntry->age = $request->age;
+        $newEntry->email = $request->email;
+        $newEntry->phone = $request->phone;
+        $newEntry->save();
+        return redirect()->back();
     }
 
     /**
@@ -45,9 +52,10 @@ class PeopleController extends Controller
      * @param  \App\Models\People  $people
      * @return \Illuminate\Http\Response
      */
-    public function show(People $people)
+    public function show($id)
     {
-        //
+        $show = People::find($id);
+        return view ('pages.show', compact('show'));
     }
 
     /**
@@ -56,9 +64,10 @@ class PeopleController extends Controller
      * @param  \App\Models\People  $people
      * @return \Illuminate\Http\Response
      */
-    public function edit(People $people)
+    public function edit($id)
     {
-        //
+        $edit =People::find($id);
+        return view ("pages.edit", compact('edit'));
     }
 
     /**
@@ -69,8 +78,7 @@ class PeopleController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, People $people)
-    {
-        //
+    {;
     }
 
     /**
@@ -79,8 +87,10 @@ class PeopleController extends Controller
      * @param  \App\Models\People  $people
      * @return \Illuminate\Http\Response
      */
-    public function destroy(People $people)
+    public function destroy($id)
     {
-        //
+        $destroy = People::find($id);
+        $destroy->delete();
+        return redirect()-> back();
     }
 }

@@ -15,3 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [PeopleController::class, "index"]);
+Route::get('/create', [PeopleController::class, "create"]);
+Route::get('/show_people/{id}', [PeopleController::class, "show"]);
+
+Route::post('/add_people', [PeopleController::class, "store"]);
+Route::post('/delete_people/{id}', [PeopleController::class, "destroy"]);
