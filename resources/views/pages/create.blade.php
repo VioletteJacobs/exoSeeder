@@ -14,19 +14,19 @@
     @csrf
     <div class="form-group">
         <label for="exampleInputName">Name : </label>
-        <input  class="form-control" name="name">
+        <input  class="form-control" value="{{old("name")}}" name="name">
     </div>
     <div class="form-group">
         <label for="exampleInputName">Age : </label>
-        <input  class="form-control" name="age">
+        <input  class="form-control" value="{{old("age")}}" name="age">
     </div>
     <div class="form-group">
         <label for="exampleInputName">Phone : </label>
-        <input  class="form-control" name="phone">
+        <input  class="form-control" value="{{old("phone")}}" name="phone">
     </div>
     <div class="form-group">
         <label for="exampleInputEmail1">Email address : </label>
-        <input  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email">
+        <input  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" value="{{old("email")}}" name="email">
         <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
       </div>
     <button type="submit" class="btn btn-primary">Submit</button>
